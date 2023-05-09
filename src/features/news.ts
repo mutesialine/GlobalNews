@@ -1,5 +1,13 @@
+
+
 import { createSlice } from "@reduxjs/toolkit";
-const initialState = {
+import { NewsArticle, NewsPublisher } from "../interfaces/interface";
+
+const initialState: {
+  newsArticle: NewsArticle[];
+  newsPublisher:NewsPublisher[]
+  selectedPublisher:
+} = {
   newsArticle: [],
   newsPublisher: [],
   selectedPublisher: null,
