@@ -7,10 +7,12 @@ export interface Article {
   urlToImage?: string;
   publishedAt?: string;
   content?: string;
- 
-  source: {
-    id: string | null;
-    name: string;
-  };
+  source: Publisher
 }
 
+
+
+export interface Publisher{
+  id: string | null;
+  name: string;
+}
