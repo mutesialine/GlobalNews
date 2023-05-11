@@ -1,10 +1,16 @@
-export interface NewsArticle {
-  urlToImage?: string;
+export interface Article {
+  author?: string;
   title?: string;
-  formattedTime?: string;
-  index?: number;
-  author?:string;
-  name?:string
+  description?: string;
+  url?: string;
+  urlToImage?: string;
+  publishedAt?: string;
+  content?: string;
+ 
+  source: {
+    id: string | null;
+    name: string;
+  };
 }
 
 

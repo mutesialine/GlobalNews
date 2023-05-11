@@ -1,11 +1,11 @@
-import { NewsArticle } from './../interfaces/interface';
+import { Article } from './../interfaces/interface';
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface state {
-  newsArticle:NewsArticle[];
-    newsPublisher:NewsArticle[];
+  newsArticle:Article[];
+    newsPublisher:Article[];
     selectedPublisher:string |null 
-    searchArticles:NewsArticle[];
+    searchArticles:Article[];
     loading:boolean;
      localLoading:boolean; 
      inputValue:string|null
@@ -24,17 +24,17 @@ export const newSlice = createSlice({
   name: "news",
   initialState: initialState,
   reducers: {
-    updateArticles: (state, action:PayloadAction<NewsArticle[]>) => {
+    updateArticles: (state, action:PayloadAction<Article[]>) => {
       state.newsArticle = action.payload;
     },
-    updatePublisher: (state, action:PayloadAction<NewsArticle[]>) => {
+    updatePublisher: (state, action:PayloadAction<Article[]>) => {
       state.newsPublisher = action.payload;
     },
     choosePublisher: (state, action :PayloadAction<string |null >) => {
      // state.inputValue = null;
       state.selectedPublisher = action.payload;
     },
-    searchCategory: (state, action:PayloadAction<NewsArticle[]>) => {
+    searchCategory: (state, action:PayloadAction<Article[]>) => {
       state.searchArticles = action.payload;
     },
     setInputValue: (state, action:PayloadAction<string |null>) => {
