@@ -1,10 +1,10 @@
-export interface NewsCard {
+export interface props {
   urlToImage: string;
   title: string;
   formattedTime: string;
 }
 
-const NewsCard = ({ urlToImage, title, formattedTime }: NewsCard) => {
+const NewsCard = ({ urlToImage, title, formattedTime }: props) => {
   return (
     <div className="space-y-2 relative text-gray-900 flex flex-col item-center group hover:opacity-90 cursor-pointer">
       <img

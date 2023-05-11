@@ -5,6 +5,10 @@ export interface NewsArticle {
   index: number;
 }
 
+export interface NewsArticleList {
+  articles: NewsArticle[];
+}
+
 export interface NewsPublisher {
   publisher: string;
 }

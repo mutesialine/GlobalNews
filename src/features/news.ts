@@ -1,16 +1,16 @@
 
 
 import { createSlice } from "@reduxjs/toolkit";
-import { NewsArticle, NewsPublisher } from "../interfaces/interface";
+import {  NewsArticleList, NewsPublisher } from "../interfaces/interface";
 
 const initialState: {
-  newsArticle: NewsArticle[];
+  newsArticle: NewsArticleList[];
   newsPublisher:NewsPublisher[]
-  selectedPublisher:
+  selectedPublisher: string | null
 } = {
-  newsArticle: [],
-  newsPublisher: [],
-  selectedPublisher: null,
+  newsArticle:[],
+  newsPublisher:[],
+  selectedPublisher:null
 };
 export const newSlice = createSlice({
   name: "news",
