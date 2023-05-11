@@ -1,9 +1,36 @@
-const App = () => {
+
+import { useEffect } from "react";
+import { useAppDispatch } from "./hooks/storeHooks";
+// import ArticlePublisher from "./components/section/ArticlePubisher";
+import Navbar from "./components/layouts/Navbar";
+import {getTopHeadlines } from "./features/newsApi";
+import {updateArticles,} from "./features/news";
+import ArticleList from "./components/section/ArticleList";
+
+
+
+const NewsArticles = () => {
+
+  const dispatch = useAppDispatch();
+
+  async function fetchData()  {
+     //const publishers  = await getSources();
+    const data = await getTopHeadlines("us");
+    dispatch(updateArticles(data.articles));
+     //dispatch(updatePublisher(publishers));
+   
+  }
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+    <div className="min-h-screen">
+         <Navbar />
+        {/* <ArticlePublisher /> */}
+        <ArticleList/>
     </div>
   );
 };
 
-export default App;
+export default NewsArticles;

@@ -1,0 +1,40 @@
+import { Article } from './../interfaces/interface';
+const API_KEY = "a69cb9134c1d45e4a58314cca10a7809";
+const API_URL = "https://news-proxy.netlify.app/api";
+console.log(API_KEY, '++++++++++++key')
+export const getTopHeadlines = async (country:string, sources:string |null = null) => {
+  try {
+    const url = sources
+      ? `${API_URL}/top-headlines?sources=${sources}&apiKey=${API_KEY}&pageSize=12`
+      : `${API_URL}/top-headlines?country=${country}&apiKey=${API_KEY}&pageSize=12`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return { message: "An error occurred. Please try again later." };
+  }
+};
+
+export const getSources  = async (): Promise<Article | {message: string}> => {
+  try {
+    const url = `${API_URL}/top-headlines/sources?apiKey=${API_KEY}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    const publishers = data.sources.map((source : { id: string })  => source.id);
+    return publishers;
+  } catch (error) {
+    return { message: "An error occurred. Please try again later." };
+  }
+};
+
+export const getEverything = async (value: string) => {
+  try {
+    const url = `${API_URL}/everything?q=${value}&apiKey=${API_KEY}&pageSize=20`;
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return { message: "An error occurred. Please try again later." };
+  }
+};

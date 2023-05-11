@@ -1,14 +1,14 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div className="w-full text-gray-900">
-      <div className="py-8 px-4 md:px-32 flex gap-x-6 justify-between border-b-2 border-gray-900">
-        <Link
-          to="/"
-          className="text-lg md:text-4xl font-bold italic hover:underline"
+      <div className="flex justify-between px-4 py-8 border-b-2 border-gray-900 md:px-32 gap-x-6">
+        <a
+          href="/"
+          className="text-lg italic font-bold md:text-4xl hover:underline"
         >
           GNews
-        </Link>
+        </a>
       </div>
     </div>
   );

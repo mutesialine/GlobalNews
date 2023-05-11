@@ -1,4 +1,5 @@
 export interface Article {
+  id?:string;
   author?: string;
   title?: string;
   description?: string;
@@ -12,5 +13,4 @@ export interface Article {
     name: string;
   };
 }
-
 
