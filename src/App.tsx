@@ -1,15 +1,17 @@
 import { useEffect } from "react";
-import { useAppDispatch } from "./hooks/storeHooks";
-import ArticlePublisher from "./components/section/PubisherList";
+import { useAppDispatch, useAppSelector } from "./hooks/storeHooks";
 import Navbar from "./components/layouts/Navbar";
 import { getSources, getTopHeadlines } from "./features/newsApi";
 import { loadingData, updateArticles, updatePublisher } from "./features/news";
 import ArticleList from "./components/section/ArticleList";
 import PublisherList from "./components/section/PubisherList";
+import ArticleListCardSkeleton from "./components/section/ArticleListCardSkeleton";
 
 const NewsArticles = () => {
   const dispatch = useAppDispatch();
+  const { loading } = useAppSelector((state) => state.news);
 
+  console.log(loading, "+++++");
   async function fetchData() {
     const publishers = await getSources();
     const data = await getTopHeadlines("us");
@@ -24,8 +26,14 @@ const NewsArticles = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <PublisherList />
-      <ArticleList />
+      {loading ? (
+        <ArticleListCardSkeleton />
+      ) : (
+        <>
+          <PublisherList />
+          <ArticleList />
+        </>
+      )}
     </div>
   );
 };
