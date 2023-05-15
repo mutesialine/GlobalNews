@@ -9,7 +9,7 @@ import {
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { useAppDispatch, useAppSelector } from "../../hooks/storeHooks";
 
-const ArticlePublisher = () => {
+const PublisherList = () => {
   const dispatch = useAppDispatch();
   const { newsPublisher, selectedPublisher } = useAppSelector(
     (state) => state.news
@@ -72,4 +72,4 @@ const ArticlePublisher = () => {
   );
 };
 
-export default ArticlePublisher;
+export default PublisherList;

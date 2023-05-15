@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useAppDispatch } from "./hooks/storeHooks";
-import ArticlePublisher from "./components/section/ArticlePubisher";
+import ArticlePublisher from "./components/section/PubisherList";
 import Navbar from "./components/layouts/Navbar";
 import { getSources, getTopHeadlines } from "./features/newsApi";
 import { loadingData, updateArticles, updatePublisher } from "./features/news";
 import ArticleList from "./components/section/ArticleList";
+import PublisherList from "./components/section/PubisherList";
 
 const NewsArticles = () => {
   const dispatch = useAppDispatch();
@@ -23,7 +24,7 @@ const NewsArticles = () => {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <ArticlePublisher />
+      <PublisherList />
       <ArticleList />
     </div>
   );
