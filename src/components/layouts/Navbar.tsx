@@ -1,5 +1,9 @@
-// import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../hooks/storeHooks";
+import { AiOutlineSearch } from "react-icons/ai";
+import { setInputValue } from "../../features/news";
 const Navbar = () => {
+  const { inputValue } = useAppSelector((state) => state.news);
+  const dispatch = useAppDispatch();
   return (
     <div className="w-full text-gray-900">
       <div className="flex justify-between px-4 py-8 border-b-2 border-gray-900 md:px-32 gap-x-6">
@@ -9,6 +13,18 @@ const Navbar = () => {
         >
           GNews
         </a>
+        <div className="flex items-center gap-2 px-2 bg-white border divide-x rounded-full shadow-md cursor-pointer divide-solid">
+          <input
+            type="text"
+            placeholder="search"
+            value={inputValue}
+            className="w-12 pl-4 text-sm outline-none text-bg-gray-900 sm:w-auto"
+            onChange={(event) => dispatch(setInputValue(event.target.value))}
+          />
+          <div className="cursor-pointer">
+            <AiOutlineSearch size={32} className="pl-2 text-gray-700" />
+          </div>
+        </div>
       </div>
     </div>
   );

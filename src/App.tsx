@@ -6,10 +6,11 @@ import { loadingData, updateArticles, updatePublisher } from "./features/news";
 import ArticleList from "./components/section/ArticleList";
 import PublisherList from "./components/section/PubisherList";
 import ArticleListCardSkeleton from "./components/section/ArticleListCardSkeleton";
+import ArticlesSearch from "./components/section/ArticlesSearch";
 
 const NewsArticles = () => {
   const dispatch = useAppDispatch();
-  const { loading } = useAppSelector((state) => state.news);
+  const { loading, inputValue } = useAppSelector((state) => state.news);
 
   console.log(loading, "+++++");
   async function fetchData() {
@@ -31,7 +32,7 @@ const NewsArticles = () => {
       ) : (
         <>
           <PublisherList />
-          <ArticleList />
+          {!inputValue ? <ArticleList /> : <ArticlesSearch />}
         </>
       )}
     </div>

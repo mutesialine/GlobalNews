@@ -8,7 +8,7 @@ interface state {
   searchArticles: Article[];
   loading: boolean;
   localLoading: boolean;
-  inputValue: string | null;
+  inputValue: string;
 }
 
 const initialState: state = {
@@ -37,7 +37,7 @@ export const newSlice = createSlice({
     searchCategory: (state, action: PayloadAction<Article[]>) => {
       state.searchArticles = action.payload;
     },
-    setInputValue: (state, action: PayloadAction<string | null>) => {
+    setInputValue: (state, action: PayloadAction<string>) => {
       state.inputValue = action.payload;
     },
     loadingData: (state, action: PayloadAction<boolean>) => {
