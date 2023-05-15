@@ -1,7 +1,7 @@
-import { Article, Publisher } from "./../interfaces/interface";
+import { Publisher } from "./../interfaces/interface";
 const API_KEY = "a69cb9134c1d45e4a58314cca10a7809";
 const API_URL = "https://news-proxy.netlify.app/api";
-console.log(API_KEY, "++++++++++++key");
+
 export const getTopHeadlines = async (
   country: string,
   sources: string | null = null
