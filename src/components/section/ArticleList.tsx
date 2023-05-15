@@ -1,5 +1,6 @@
-import NewsCard from "../ui/NewsCard";
 import { useAppSelector } from "../../hooks/storeHooks";
+import { Link } from "react-router-dom";
+import NewsCard from "../ui/NewsCard";
 
 const ArticleList = () => {
   const { newsArticle, localLoading } = useAppSelector((state) => state.news);
@@ -10,9 +11,13 @@ const ArticleList = () => {
       }`}
     >
       {newsArticle?.map((article, index) => (
-        <div key={`articles-index${index}`}>
+        <Link
+          to={"/fullArticle"}
+          state={article}
+          key={`articles-index${index}`}
+        >
           <NewsCard {...article} />
-        </div>
+        </Link>
       ))}
     </div>
   );
