@@ -1,24 +1,45 @@
 import { useAppSelector } from "../../hooks/storeHooks";
-import { Link } from "react-router-dom";
 import NewsCard from "../ui/NewsCard";
+import ImageCard from "../ui/ImageCard";
+import { Swiper, SwiperRef, SwiperSlide, useSwiper } from "swiper/react";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import { useRef } from "react";
 
 const ArticleList = () => {
   const { newsArticle, localLoading } = useAppSelector((state) => state.news);
+  const swiperRef = useRef<SwiperRef>(null);
+
   return (
-    <div
-      className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 py-8 px-5 md:px-16 mb-10 place-items:ju${
-        localLoading ? "opacity-30" : ""
-      }`}
-    >
-      {newsArticle?.map((article, index) => (
-        <Link
-          to={"/fullArticle"}
-          state={article}
-          key={`articles-index${index}`}
+    <div className="w-3/5 px-5 py-8">
+      <div className="relative z-10">
+        <Swiper
+          slidesPerView={1}
+          onSlideChange={() => console.log("slide change")}
+          ref={swiperRef}
+          className="relative"
         >
-          <NewsCard {...article} />
-        </Link>
-      ))}
+          {newsArticle?.map((article, index) => (
+            <a href="" key={`articles-index${index}`} className="w-full">
+              <SwiperSlide className="relative flex ">
+                <NewsCard {...article} />
+              </SwiperSlide>
+            </a>
+          ))}
+        </Swiper>
+        <div className="absolute right-0 z-20 flex flex-col items-end bottom-16">
+          <div onClick={() => swiperRef.current?.swiper.slideNext()}>
+            <BsChevronRight size={44} className="p-2 bg-red-600" />
+          </div>
+          <div onClick={() => swiperRef.current?.swiper.slidePrev()}>
+            <BsChevronLeft size={44} className="p-2 bg-white" />
+          </div>
+        </div>
+      </div>
+      <div className="flex gap-x-4">
+        {newsArticle?.slice(3, 10).map((article, index) => (
+          <ImageCard {...article} key={index} />
+        ))}
+      </div>
     </div>
   );
 };

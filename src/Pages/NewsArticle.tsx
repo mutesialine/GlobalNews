@@ -27,10 +27,7 @@ const NewsArticles = () => {
       {loading ? (
         <ArticleListCardSkeleton />
       ) : (
-        <>
-          {!inputValue ? <ArticleList /> : <ArticlesSearch />}
-          <PublisherList />
-        </>
+        <>{!inputValue ? <ArticleList /> : <ArticlesSearch />}</>
       )}
     </div>
   );

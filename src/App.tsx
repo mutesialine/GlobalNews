@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NewsArticles from "./Pages/NewsArticle";
 import ArticleDetails from "./Pages/ArticleDetails";
 import PageLayout from "./components/layouts/PageLayout";
+import "swiper/css";
 
 const App = () => {
   return (
