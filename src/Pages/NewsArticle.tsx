@@ -23,13 +23,13 @@ const NewsArticles = () => {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="max-w-screen-xl min-h-screen mx-auto">
       {loading ? (
         <ArticleListCardSkeleton />
       ) : (
         <>
-          <PublisherList />
           {!inputValue ? <ArticleList /> : <ArticlesSearch />}
+          <PublisherList />
         </>
       )}
     </div>

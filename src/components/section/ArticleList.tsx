@@ -6,7 +6,7 @@ const ArticleList = () => {
   const { newsArticle, localLoading } = useAppSelector((state) => state.news);
   return (
     <div
-      className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 py-8 px-5 md:px-16 mb-10 ${
+      className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 py-8 px-5 md:px-16 mb-10 place-items:ju${
         localLoading ? "opacity-30" : ""
       }`}
     >
