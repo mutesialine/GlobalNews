@@ -32,8 +32,6 @@ const PublisherList = () => {
     dispatch(setLocalLoading(false));
   };
 
-  console.log(newsPublisher);
-
   return (
     <div className="flex items-center px-8 py-2 text-white bg-gray-900 gap-x-6">
       <div
