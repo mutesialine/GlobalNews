@@ -31,7 +31,7 @@ const Navbar = () => {
               <a href="">News </a>
               <BsChevronDown size={12} />
             </div>
-            <div onMouseEnter={toggleDropdown}>
+            <div onMouseEnter={toggleDropdown} onMouseLeave={()=>setIsDropdownOpen(false)}>
               <div
                 className="flex items-center cursor-pointer gap-x-1"
                 onClick={toggleDropdown}
