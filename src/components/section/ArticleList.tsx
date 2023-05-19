@@ -21,7 +21,7 @@ const ArticleList = () => {
               onSlideChange={() => console.log("slide change")}
               ref={swiperRef}
               autoplay={{
-                delay: 3000,
+                delay: 2000,
               }}
               className="relative mySwiper"
               modules={[Autoplay]}
@@ -46,11 +46,11 @@ const ArticleList = () => {
               </div>
             </div>
           </div>
-          <div className="flex gap-x-4">
+          {/* <div className="flex gap-x-4">
             {newsArticle?.slice(2, 6).map((article, index) => (
               <ImageCard {...article} key={index} />
             ))}
-          </div>
+          </div> */}
         </div>
         <div>
           <a href="">trending</a>
@@ -77,10 +77,10 @@ const ArticleList = () => {
           </div>
         </div>
       </div>
-      <div className="">
+      <div className="space-y-12 ">
         <h1 className="text-2xl font-bold"> All Categories</h1>
-        <div className="grid w-3/5 grid-cols-3 gap-8">
-          {newsArticle?.slice(4, 9).map((article, index) => (
+        <div className="grid grid-cols-3 gap-8">
+          {newsArticle?.slice(4, 10).map((article, index) => (
             <a href="" key={`articles-index${index}`} className="w-full h-full">
               <NewsCategories {...article} />
             </a>

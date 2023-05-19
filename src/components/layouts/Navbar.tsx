@@ -7,7 +7,7 @@ const Navbar = () => {
   const dispatch = useAppDispatch();
   return (
     <div className="w-full text-gray-900">
-      <div className="px-4 py-8 space-y-12 border-b-2 border-gray-900 md:px-32">
+      <div className="px-24 py-8 space-y-12 border-b-2 border-gray-900 md:px-32">
         <a
           href="/"
           className="text-lg italic font-bold md:text-4xl hover:underline"

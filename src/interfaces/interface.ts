@@ -1,5 +1,5 @@
 export interface Article {
-  id?:string;
+  id?: string;
   author?: string;
   title?: string;
   description?: string;
@@ -7,12 +7,12 @@ export interface Article {
   urlToImage?: string;
   publishedAt?: string;
   content?: string;
-  source: Publisher
+  category?: string;
+  source: Publisher;
 }
 
-
-
-export interface Publisher{
+export interface Publisher {
   id: string | null;
   name: string;
+  category: string;
 }

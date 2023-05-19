@@ -14,6 +14,7 @@ const PublisherList = () => {
   const { newsPublisher, selectedPublisher } = useAppSelector(
     (state) => state.news
   );
+  console.log("jskfd", newsPublisher);
 
   const refInput: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const handleScroll = (scrollOffset: number) => {
@@ -31,7 +32,6 @@ const PublisherList = () => {
     dispatch(loadingData(false));
     dispatch(setLocalLoading(false));
   };
-
   return (
     <div className="flex items-center px-8 py-2 text-white bg-gray-900 gap-x-6">
       <div
