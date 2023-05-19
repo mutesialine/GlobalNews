@@ -14,14 +14,14 @@ const Navbar = () => {
 
   return (
     <div className="w-full text-gray-900">
-      <div className="px-24 py-8 space-y-12 border-b-2 border-gray-900 md:px-32">
+      <div className="relative px-24 py-8 space-y-12 border-b-2 border-gray-900 md:px-32">
         <a
           href="/"
           className="text-lg italic font-bold md:text-4xl hover:underline"
         >
           GNews
         </a>
-        <div className="flex items-center justify-between text-xl font-bold">
+        <div className="flex items-center justify-between text-xl font-bold a">
           <div className="flex items-center gap-x-4">
             <div className="flex items-center gap-x-1">
               <a href="">Home </a>
@@ -33,16 +33,19 @@ const Navbar = () => {
             </div>
             <div>
               <div
-                className="flex items-center gap-x-1"
+                className="flex items-center cursor-pointer gap-x-1"
                 onClick={toggleDropdown}
               >
-                <a href="">Categories </a>
+                <p>Categories </p>
+
                 <BsChevronDown size={12} />
               </div>
-              {isDropdownOpen && <Categories />}
+              <div className="absolute z-20">
+                {isDropdownOpen && <Categories />}
+              </div>
             </div>
           </div>
-          {/* <div className="flex items-center gap-2 px-2 bg-white border divide-x rounded-full shadow-md cursor-pointer divide-solid">
+          <div className="flex items-center gap-2 px-2 bg-white border divide-x rounded-full shadow-md cursor-pointer divide-solid">
             <input
               type="text"
               placeholder="search"
@@ -53,7 +56,7 @@ const Navbar = () => {
             <div className="cursor-pointer">
               <AiOutlineSearch size={32} className="pl-2 text-gray-700" />
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </div>
