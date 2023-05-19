@@ -2,6 +2,7 @@ import { useAppSelector } from "../../hooks/storeHooks";
 import NewsCard from "../ui/NewsCard";
 import ImageCard from "../ui/ImageCard";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { useRef } from "react";
 import NewsCategories from "../ui/NewsCategories";
@@ -9,14 +10,6 @@ import NewsCategories from "../ui/NewsCategories";
 const ArticleList = () => {
   const { newsArticle, localLoading } = useAppSelector((state) => state.news);
   const swiperRef = useRef<SwiperRef>(null);
-  // useEffect(() => {
-  //   const slideNextAfterDelay = () => {
-  //     setTimeout(() => {
-  //       swiperRef.current?.swiper.slideNext();
-  //     }, 1000);
-  //   };
-  //   slideNextAfterDelay();
-  // }, []);
 
   return (
     <div className="space-y-6">
@@ -28,10 +21,10 @@ const ArticleList = () => {
               onSlideChange={() => console.log("slide change")}
               ref={swiperRef}
               autoplay={{
-                delay: 1000,
+                delay: 3000,
               }}
-              modules={[Autoplay]}
               className="relative mySwiper"
+              modules={[Autoplay]}
             >
               {newsArticle?.map((article, index) => (
                 <a href="" key={`articles-index-${index}`} className="w-full">
