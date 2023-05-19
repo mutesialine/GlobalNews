@@ -14,7 +14,7 @@ const Navbar = () => {
         >
           GNews
         </a>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between text-xl font-bold">
           <div className="flex items-center gap-x-4">
             <div className="flex items-center gap-x-1">
               <a href="">Home </a>
@@ -22,6 +22,10 @@ const Navbar = () => {
             </div>
             <div className="flex items-center gap-x-1">
               <a href="">News </a>
+              <BsChevronDown size={12} />
+            </div>
+            <div className="flex items-center gap-x-1">
+              <a href="">Categories </a>
               <BsChevronDown size={12} />
             </div>
           </div>

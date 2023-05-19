@@ -1,6 +1,6 @@
 import { Article } from "../../interfaces/interface";
 
-const NewsCard = ({ urlToImage, title, publishedAt }: Article) => {
+const NewsCard = ({ urlToImage, title, publishedAt, source }: Article) => {
   return (
     <div className="relative flex flex-col space-y-2 text-white cursor-pointer item-center group hover:opacity-90">
       <img
@@ -14,6 +14,9 @@ const NewsCard = ({ urlToImage, title, publishedAt }: Article) => {
           <li>{publishedAt}hours ago</li>
         </ul>
       </div>
+      <p className="absolute top-0 right-0 z-20 px-2 text-sm font-bold text-white bg-red-600 left-4 w-fit">
+        {source.name}
+      </p>
     </div>
   );
 };

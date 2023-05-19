@@ -1,7 +1,7 @@
 import { useAppSelector } from "../../hooks/storeHooks";
 import NewsCard from "../ui/NewsCard";
 import ImageCard from "../ui/ImageCard";
-import { Swiper, SwiperRef, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { useRef } from "react";
 import NewsCategories from "../ui/NewsCategories";
@@ -9,6 +9,14 @@ import NewsCategories from "../ui/NewsCategories";
 const ArticleList = () => {
   const { newsArticle, localLoading } = useAppSelector((state) => state.news);
   const swiperRef = useRef<SwiperRef>(null);
+  // useEffect(() => {
+  //   const slideNextAfterDelay = () => {
+  //     setTimeout(() => {
+  //       swiperRef.current?.swiper.slideNext();
+  //     }, 1000);
+  //   };
+  //   slideNextAfterDelay();
+  // }, []);
 
   return (
     <div className="space-y-6">
@@ -19,10 +27,14 @@ const ArticleList = () => {
               slidesPerView={1}
               onSlideChange={() => console.log("slide change")}
               ref={swiperRef}
-              className="relative"
+              autoplay={{
+                delay: 1000,
+              }}
+              modules={[Autoplay]}
+              className="relative mySwiper"
             >
               {newsArticle?.map((article, index) => (
-                <a href="" key={`articles-index${index}`} className="w-full">
+                <a href="" key={`articles-index-${index}`} className="w-full">
                   <SwiperSlide className="relative flex ">
                     <NewsCard {...article} />
                   </SwiperSlide>
@@ -31,7 +43,10 @@ const ArticleList = () => {
             </Swiper>
             <div className="absolute bottom-0 right-0 z-20 flex flex-col items-end">
               <div onClick={() => swiperRef.current?.swiper.slideNext()}>
-                <BsChevronRight size={44} className="p-2 bg-red-600" />
+                <BsChevronRight
+                  size={44}
+                  className="p-2 text-white bg-red-600"
+                />
               </div>
               <div onClick={() => swiperRef.current?.swiper.slidePrev()}>
                 <BsChevronLeft size={44} className="p-2 bg-white" />
