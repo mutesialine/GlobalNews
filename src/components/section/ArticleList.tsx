@@ -6,6 +6,7 @@ import { Autoplay } from "swiper";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { useRef } from "react";
 import NewsCategories from "../ui/NewsCategories";
+import PublisherList from "./PubisherList";
 
 const ArticleList = () => {
   const { newsArticle, localLoading } = useAppSelector((state) => state.news);
@@ -53,7 +54,7 @@ const ArticleList = () => {
           </div> */}
         </div>
         <div>
-          <a href="">trending</a>
+          <p className="py-6 text-lg font-bold">Trending</p>
           <div className="flex flex-col gap-y-2">
             {newsArticle?.slice(5, 9).map((article, index) => (
               <div

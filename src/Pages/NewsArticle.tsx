@@ -29,7 +29,6 @@ const NewsArticles = () => {
       ) : (
         <>{!inputValue ? <ArticleList /> : <ArticlesSearch />}</>
       )}
-      {/* <PublisherList /> */}
     </div>
   );
 };
