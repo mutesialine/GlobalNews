@@ -2,9 +2,16 @@ import { useAppDispatch, useAppSelector } from "../../hooks/storeHooks";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsChevronDown } from "react-icons/bs";
 import { setInputValue } from "../../features/news";
+import Categories from "../section/Categories";
+import { useState } from "react";
 const Navbar = () => {
   const { inputValue } = useAppSelector((state) => state.news);
   const dispatch = useAppDispatch();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   return (
     <div className="w-full text-gray-900">
       <div className="px-24 py-8 space-y-12 border-b-2 border-gray-900 md:px-32">
@@ -24,12 +31,18 @@ const Navbar = () => {
               <a href="">News </a>
               <BsChevronDown size={12} />
             </div>
-            <div className="flex items-center gap-x-1">
-              <a href="">Categories </a>
-              <BsChevronDown size={12} />
+            <div>
+              <div
+                className="flex items-center gap-x-1"
+                onClick={toggleDropdown}
+              >
+                <a href="">Categories </a>
+                <BsChevronDown size={12} />
+              </div>
+              {isDropdownOpen && <Categories />}
             </div>
           </div>
-          <div className="flex items-center gap-2 px-2 bg-white border divide-x rounded-full shadow-md cursor-pointer divide-solid">
+          {/* <div className="flex items-center gap-2 px-2 bg-white border divide-x rounded-full shadow-md cursor-pointer divide-solid">
             <input
               type="text"
               placeholder="search"
@@ -40,7 +53,7 @@ const Navbar = () => {
             <div className="cursor-pointer">
               <AiOutlineSearch size={32} className="pl-2 text-gray-700" />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

@@ -7,11 +7,10 @@ import ArticlesSearch from "../components/section/ArticlesSearch";
 import { useAppDispatch, useAppSelector } from "../hooks/storeHooks";
 import { getSources, getTopHeadlines } from "../features/newsApi";
 import { loadingData, updateArticles, updatePublisher } from "../features/news";
-import Categories from "../components/section/Categories";
 
 const NewsArticles = () => {
   const dispatch = useAppDispatch();
-  //const { loading, inputValue } = useAppSelector((state) => state.news);
+  const { loading, inputValue } = useAppSelector((state) => state.news);
   async function fetchData() {
     const publishers = await getSources();
     const data = await getTopHeadlines("us");
@@ -25,13 +24,12 @@ const NewsArticles = () => {
 
   return (
     <div className="max-w-screen-xl min-h-screen mx-auto">
-      {/* {loading ? (
+      {loading ? (
         <ArticleListCardSkeleton />
       ) : (
         <>{!inputValue ? <ArticleList /> : <ArticlesSearch />}</>
-      )} */}
-      <PublisherList />
-      <Categories />
+      )}
+      {/* <PublisherList /> */}
     </div>
   );
 };
