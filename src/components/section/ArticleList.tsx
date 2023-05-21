@@ -1,12 +1,10 @@
 import { useAppSelector } from "../../hooks/storeHooks";
 import NewsCard from "../ui/NewsCard";
-import ImageCard from "../ui/ImageCard";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { useRef } from "react";
 import NewsCategories from "../ui/NewsCategories";
-import PublisherList from "./PubisherList";
 
 const ArticleList = () => {
   const { newsArticle, localLoading } = useAppSelector((state) => state.news);
@@ -47,11 +45,6 @@ const ArticleList = () => {
               </div>
             </div>
           </div>
-          {/* <div className="flex gap-x-4">
-            {newsArticle?.slice(2, 6).map((article, index) => (
-              <ImageCard {...article} key={index} />
-            ))}
-          </div> */}
         </div>
         <div>
           <p className="py-6 text-lg font-bold">Trending</p>
