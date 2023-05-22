@@ -4,7 +4,6 @@ import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { useRef } from "react";
-import NewsCategories from "../ui/NewsCategories";
 
 const ArticleList = () => {
   const { newsArticle, localLoading } = useAppSelector((state) => state.news);
@@ -13,6 +12,7 @@ const ArticleList = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-x-12">
+        {/* main news */}
         <div className="w-3/5 px-5 py-8 space-y-3">
           <div className="relative z-10">
             <Swiper
@@ -46,6 +46,7 @@ const ArticleList = () => {
             </div>
           </div>
         </div>
+        {/* trending section */}
         <div>
           <p className="py-6 text-lg font-bold">Trending</p>
           <div className="flex flex-col gap-y-2">
@@ -69,16 +70,6 @@ const ArticleList = () => {
               </div>
             ))}
           </div>
-        </div>
-      </div>
-      <div className="space-y-12 ">
-        <h1 className="text-2xl font-bold"> All Categories</h1>
-        <div className="grid grid-cols-3 gap-8">
-          {newsArticle?.slice(4, 10).map((article, index) => (
-            <a href="" key={`articles-index${index}`} className="w-full h-full">
-              <NewsCategories {...article} />
-            </a>
-          ))}
         </div>
       </div>
     </div>

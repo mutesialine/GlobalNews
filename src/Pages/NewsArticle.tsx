@@ -7,6 +7,7 @@ import ArticlesSearch from "../components/section/ArticlesSearch";
 import { useAppDispatch, useAppSelector } from "../hooks/storeHooks";
 import { getSources, getTopHeadlines } from "../features/newsApi";
 import { loadingData, updateArticles, updatePublisher } from "../features/news";
+import SortedArticles from "../components/section/SortedArticles";
 
 const NewsArticles = () => {
   const dispatch = useAppDispatch();
@@ -27,7 +28,10 @@ const NewsArticles = () => {
       {loading ? (
         <ArticleListCardSkeleton />
       ) : (
-        <>{!inputValue ? <ArticleList /> : <ArticlesSearch />}</>
+        <>
+          <ArticleList />
+          <SortedArticles />
+        </>
       )}
       <PublisherList />
     </div>
