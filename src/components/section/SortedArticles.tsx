@@ -3,6 +3,7 @@ import NewsCategories from "../ui/NewsCategories";
 
 const SortedArticles = () => {
   const { newsArticle } = useAppSelector((state) => state.news);
+
   return (
     <div className="space-y-12 ">
       <h1 className="text-2xl font-bold"> All Categories</h1>

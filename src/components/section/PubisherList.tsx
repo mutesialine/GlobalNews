@@ -14,8 +14,6 @@ const PublisherList = () => {
   const { newsPublisher, selectedPublisher } = useAppSelector(
     (state) => state.news
   );
-  console.log("jskfd", newsPublisher);
-
   const refInput: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const handleScroll = (scrollOffset: number) => {
     const inputElement = refInput.current;

@@ -13,7 +13,6 @@ export const getTopHeadlines = async (
 
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data, "'skfjflk");
     return data;
   } catch (error) {
     return { message: "An error occurred. Please try again later." };
@@ -25,8 +24,8 @@ export const getSources = async (): Promise<Publisher[]> => {
     const url = `${API_URL}/top-headlines/sources?apiKey=${API_KEY}`;
     const response = await fetch(url);
     const data = await response.json();
-    const publishers = data.sources;
-    return publishers;
+    const source = data.sources;
+    return source;
   } catch (error) {
     throw Error("An error occurred. Please try again later.");
   }
@@ -40,22 +39,5 @@ export const getEverything = async (value: string) => {
     return data;
   } catch (error) {
     return { message: "An error occurred. Please try again later." };
-  }
-};
-
-export const getCategories = async (): Promise<Publisher[]> => {
-  try {
-    const url = `${API_URL}/top-headlines/sources?apiKey=${API_KEY}`;
-    const response = await fetch(url);
-    const data = await response.json();
-    const publishers = data.sources.map(
-      (source: { id: string; name: string }) => ({
-        id: source.id,
-        name: source.name || source.id,
-      })
-    );
-    return publishers;
-  } catch (error) {
-    throw Error("An error occurred. Please try again later.");
   }
 };

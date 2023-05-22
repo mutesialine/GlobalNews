@@ -2,21 +2,26 @@ import { useEffect } from "react";
 
 import ArticleListCardSkeleton from "../components/section/ArticleListCardSkeleton";
 import PublisherList from "../components/section/PubisherList";
-import ArticleList from "../components/section/ArticleList";
-import ArticlesSearch from "../components/section/ArticlesSearch";
 import { useAppDispatch, useAppSelector } from "../hooks/storeHooks";
 import { getSources, getTopHeadlines } from "../features/newsApi";
-import { loadingData, updateArticles, updatePublisher } from "../features/news";
+import {
+  loadingData,
+  updateArticles,
+  updateCategory,
+  updatePublisher,
+} from "../features/news";
 import SortedArticles from "../components/section/SortedArticles";
 
 const NewsArticles = () => {
   const dispatch = useAppDispatch();
-  const { loading, inputValue } = useAppSelector((state) => state.news);
+  const { loading } = useAppSelector((state) => state.news);
   async function fetchData() {
     const publishers = await getSources();
+    const categories = await getSources();
     const data = await getTopHeadlines("us");
     dispatch(updateArticles(data.articles));
     dispatch(updatePublisher(publishers));
+    dispatch(updateCategory(categories));
     dispatch(loadingData(false));
   }
   useEffect(() => {
@@ -29,11 +34,10 @@ const NewsArticles = () => {
         <ArticleListCardSkeleton />
       ) : (
         <>
-          <ArticleList />
+          <PublisherList />
           <SortedArticles />
         </>
       )}
-      <PublisherList />
     </div>
   );
 };

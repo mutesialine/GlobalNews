@@ -9,11 +9,13 @@ interface state {
   loading: boolean;
   localLoading: boolean;
   inputValue: string;
+  newsCategory: Publisher[];
 }
 
 const initialState: state = {
   newsArticle: [],
   newsPublisher: [],
+  newsCategory: [],
   selectedPublisher: null,
   searchArticles: [],
   inputValue: "",
@@ -30,10 +32,14 @@ export const newSlice = createSlice({
     updatePublisher: (state, action: PayloadAction<Publisher[]>) => {
       state.newsPublisher = action.payload;
     },
+    updateCategory: (state, action: PayloadAction<Publisher[]>) => {
+      state.newsCategory = action.payload;
+    },
     choosePublisher: (state, action: PayloadAction<string | null>) => {
       // state.inputValue = null;
       state.selectedPublisher = action.payload;
     },
+
     searchCategory: (state, action: PayloadAction<Article[]>) => {
       state.searchArticles = action.payload;
     },
@@ -58,5 +64,6 @@ export const {
   setInputValue,
   loadingData,
   setLocalLoading,
+  updateCategory,
 } = newSlice.actions;
 export default newSlice.reducer;

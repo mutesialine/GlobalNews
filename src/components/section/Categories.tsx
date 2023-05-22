@@ -8,18 +8,17 @@ import { getTopHeadlines } from "../../features/newsApi";
 import { useAppDispatch, useAppSelector } from "../../hooks/storeHooks";
 
 const Categories = () => {
-  const { newsPublisher } = useAppSelector((state) => state.news);
+  const { newsCategory } = useAppSelector((state) => state.news);
+  console.log(newsCategory);
   const dispatch = useAppDispatch();
-  const handleSelectedCategory = async (category: string | null) => {
+  const handleSelectedCategory = async (source: string | null) => {
     dispatch(setLocalLoading(true));
-    dispatch(choosePublisher(category));
-    const data = await getTopHeadlines("us", category);
+    const data = await getTopHeadlines("us", source);
     dispatch(updateArticles(data.articles));
     dispatch(loadingData(false));
     dispatch(setLocalLoading(false));
   };
-  const categories = newsPublisher.map((element?) => element?.category);
-
+  const categories = newsCategory.map((element?) => element?.category);
   const uniqueCategories = [...new Set(categories)];
   return (
     <div className="flex flex-col p-6 pb-3 text-black bg-white border shadow-md w-fit">
