@@ -1,16 +1,16 @@
-import { useAppDispatch, useAppSelector } from "../../hooks/storeHooks";
-import { AiOutlineSearch } from "react-icons/ai";
-import { BsChevronDown } from "react-icons/bs";
-import { setInputValue } from "../../features/news";
-import Categories from "../section/Categories";
-import { useState } from "react";
+// import { useAppDispatch, useAppSelector } from "../../hooks/storeHooks";
+// import { AiOutlineSearch } from "react-icons/ai";
+// import { BsChevronDown } from "react-icons/bs";
+// import { setInputValue } from "../../features/news";
+// import Categories from "../section/Categories";
+// import { useState } from "react";
 const Navbar = () => {
-  const { inputValue } = useAppSelector((state) => state.news);
-  const dispatch = useAppDispatch();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
+  // const { inputValue } = useAppSelector((state) => state.news);
+  // const dispatch = useAppDispatch();
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // const toggleDropdown = () => {
+  //   setIsDropdownOpen(!isDropdownOpen);
+  // };
 
   return (
     <div className="w-full text-gray-900">
@@ -21,7 +21,7 @@ const Navbar = () => {
         >
           GNews
         </a>
-        <div className="flex items-center justify-between text-xl font-bold a">
+        {/* <div className="flex items-center justify-between text-xl font-bold a">
           <div className="flex items-center gap-x-4">
             <div className="flex items-center gap-x-1">
               <a href="">Home </a>
@@ -57,7 +57,7 @@ const Navbar = () => {
               <AiOutlineSearch size={32} className="pl-2 text-gray-700" />
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

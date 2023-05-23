@@ -1,13 +1,17 @@
-import { useAppSelector } from "../../hooks/storeHooks";
+import { useRef } from "react";
 import NewsCard from "../ui/NewsCard";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
-import { useRef } from "react";
+import { useGetTopNewsQuery } from "../../features/apiSlice";
+import { Article } from "../../interfaces/interface";
 
 const ArticleList = () => {
-  const { newsArticle, localLoading } = useAppSelector((state) => state.news);
+  //const { newsArticle } = useAppSelector((state) => state.news);
+  const { data } = useGetTopNewsQuery("us");
+  const newsArticle: Article[] = data?.articles;
   const swiperRef = useRef<SwiperRef>(null);
+  console.log("here", data);
 
   return (
     <div className="space-y-6">
