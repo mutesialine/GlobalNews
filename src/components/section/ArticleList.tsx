@@ -7,11 +7,9 @@ import { useGetTopNewsQuery } from "../../features/apiSlice";
 import { Article } from "../../interfaces/interface";
 
 const ArticleList = () => {
-  //const { newsArticle } = useAppSelector((state) => state.news);
   const { data } = useGetTopNewsQuery("us");
   const newsArticle: Article[] = data?.articles;
   const swiperRef = useRef<SwiperRef>(null);
-  console.log("here", data);
 
   return (
     <div className="space-y-6">

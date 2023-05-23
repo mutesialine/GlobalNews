@@ -9,8 +9,11 @@ const newsApi = createApi({
       query: (country) =>
         `/top-headlines?country=${country}&apiKey=${API_KEY}&pageSize=12`,
     }),
+    getPublisher: builder.query({
+      query: () => `/top-headlines/sources?apiKey=${API_KEY}`,
+    }),
   }),
 });
 
-export const { useGetTopNewsQuery } = newsApi;
+export const { useGetTopNewsQuery, useGetPublisherQuery } = newsApi;
 export default newsApi;
