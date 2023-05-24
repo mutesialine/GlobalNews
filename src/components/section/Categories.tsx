@@ -1,23 +1,10 @@
-import {
-  choosePublisher,
-  loadingData,
-  setLocalLoading,
-  updateArticles,
-} from "../../features/news";
-import { getTopHeadlines } from "../../features/newsApi";
-import { useAppDispatch, useAppSelector } from "../../hooks/storeHooks";
+import { useGetSourcesQuery } from "../../features/apiSlice";
+import { Publisher } from "../../interfaces/interface";
 
 const Categories = () => {
-  const { newsCategory } = useAppSelector((state) => state.news);
-  console.log(newsCategory);
-  const dispatch = useAppDispatch();
-  const handleSelectedCategory = async (source: string | null) => {
-    dispatch(setLocalLoading(true));
-    const data = await getTopHeadlines("us", source);
-    dispatch(updateArticles(data.articles));
-    dispatch(loadingData(false));
-    dispatch(setLocalLoading(false));
-  };
+  const { data } = useGetSourcesQuery(null);
+  const newsCategory: Publisher[] = data?.sources;
+
   const categories = newsCategory.map((element?) => element?.category);
   const uniqueCategories = [...new Set(categories)];
   return (
@@ -26,7 +13,6 @@ const Categories = () => {
         <p
           key={index}
           className="font-bold underline cursor-pointer hover:text-blue-700 shrink-0"
-          onClick={() => handleSelectedCategory(null)}
         >
           {category}
         </p>

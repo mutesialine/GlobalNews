@@ -1,11 +1,12 @@
 import { useRef, RefObject } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
-import { useGetPublisherQuery } from "../../features/apiSlice";
+import { useGetSourcesQuery } from "../../features/apiSlice";
 import { Publisher } from "../../interfaces/interface";
 
 const PublisherList = () => {
-  const { data } = useGetPublisherQuery();
+  const { data } = useGetSourcesQuery(null);
   const Publishers: Publisher[] = data?.sources;
+  console.log(Publishers, "herewe");
   console.log("heree", Publishers);
   const refInput: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const handleScroll = (scrollOffset: number) => {
