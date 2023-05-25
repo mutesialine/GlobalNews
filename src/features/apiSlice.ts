@@ -12,8 +12,18 @@ const newsApi = createApi({
     getSources: builder.query({
       query: () => `/top-headlines/sources?apiKey=${API_KEY}`,
     }),
+    getArticleFromPublisher: builder.query({
+      query: (source: string | null) => {
+        console.log(source, "ivad my friend");
+        return `/top-headlines?sources=${source}&apiKey=${API_KEY}&pageSize=12`;
+      },
+    }),
   }),
 });
 
-export const { useGetTopNewsQuery, useGetSourcesQuery } = newsApi;
+export const {
+  useGetTopNewsQuery,
+  useGetSourcesQuery,
+  useGetArticleFromPublisherQuery,
+} = newsApi;
 export default newsApi;

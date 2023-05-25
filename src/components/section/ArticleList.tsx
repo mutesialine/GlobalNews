@@ -3,12 +3,30 @@ import NewsCard from "../ui/NewsCard";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
-import { useGetTopNewsQuery } from "../../features/apiSlice";
+import {
+  useGetArticleFromPublisherQuery,
+  useGetTopNewsQuery,
+} from "../../features/apiSlice";
 import { Article } from "../../interfaces/interface";
+import NewsCategories from "../ui/NewsCategories";
+import { useAppSelector } from "../../hooks/storeHooks";
 
 const ArticleList = () => {
+  const selectedPublisher = useAppSelector((state) => {
+    console.log(state.news.selectedPublisher, "fjshflkja");
+    return state.news.selectedPublisher;
+  });
+
   const { data } = useGetTopNewsQuery("us");
-  const newsArticle: Article[] = data?.articles;
+  const { data: articleFromPublisher, error } =
+    useGetArticleFromPublisherQuery(selectedPublisher);
+  console.log(error, " error");
+  console.log(data, " articleFromPublisherr");
+
+  const newsArticle: Article[] = selectedPublisher
+    ? articleFromPublisher?.articles
+    : data?.articles;
+
   const swiperRef = useRef<SwiperRef>(null);
 
   return (
@@ -49,7 +67,7 @@ const ArticleList = () => {
           </div>
         </div>
         {/* trending section */}
-        <div>
+        {/* <div>
           <p className="py-6 text-lg font-bold">Trending</p>
           <div className="flex flex-col gap-y-2">
             {newsArticle?.slice(5, 9).map((article, index) => (
@@ -72,7 +90,14 @@ const ArticleList = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
+      </div>
+      <div className="grid grid-cols-3 gap-4 ">
+        {newsArticle?.slice(5, 11).map((article, index) => (
+          <div key={index}>
+            <NewsCategories {...article} />
+          </div>
+        ))}
       </div>
     </div>
   );

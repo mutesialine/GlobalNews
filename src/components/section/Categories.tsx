@@ -4,6 +4,7 @@ import { Publisher } from "../../interfaces/interface";
 const Categories = () => {
   const { data } = useGetSourcesQuery(null);
   const newsCategory: Publisher[] = data?.sources;
+  console.log(data, "herei ivad data");
 
   const categories = newsCategory.map((element?) => element?.category);
   const uniqueCategories = [...new Set(categories)];

@@ -4,15 +4,12 @@ import App from "./App.tsx";
 import "./index.css";
 import { Provider } from "react-redux";
 import store from "./store/index.tsx";
-import { ApiProvider } from "@reduxjs/toolkit/dist/query/react";
-import newsApi from "./features/apiSlice.ts";
 
+console.log(store.getState(), "here is the store");
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
-      <ApiProvider api={newsApi}>
-        <App />
-      </ApiProvider>
+      <App />
     </Provider>
   </React.StrictMode>
 );

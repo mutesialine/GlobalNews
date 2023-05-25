@@ -2,18 +2,25 @@ import { useRef, RefObject } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { useGetSourcesQuery } from "../../features/apiSlice";
 import { Publisher } from "../../interfaces/interface";
+import { choosePublisher } from "../../features/news";
+import { useAppDispatch } from "../../hooks/storeHooks";
 
 const PublisherList = () => {
+  const dispatch = useAppDispatch();
+
   const { data } = useGetSourcesQuery(null);
   const Publishers: Publisher[] = data?.sources;
-  console.log(Publishers, "herewe");
-  console.log("heree", Publishers);
+
   const refInput: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
   const handleScroll = (scrollOffset: number) => {
     const inputElement = refInput.current;
     if (inputElement) {
       inputElement.scrollBy({ left: scrollOffset, behavior: "smooth" });
     }
+  };
+
+  const handleSelectedPublisher = async (publisher: string | null) => {
+    dispatch(choosePublisher(publisher));
   };
 
   return (
@@ -31,6 +38,7 @@ const PublisherList = () => {
           <p
             key={publisher?.id}
             className="font-bold underline cursor-pointer hover:text-blue-700 shrink-0"
+            onClick={() => handleSelectedPublisher(publisher.id)}
           >
             {publisher.name}
           </p>
