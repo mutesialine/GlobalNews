@@ -13,15 +13,12 @@ import { useAppSelector } from "../../hooks/storeHooks";
 
 const ArticleList = () => {
   const selectedPublisher = useAppSelector((state) => {
-    console.log(state.news.selectedPublisher, "fjshflkja");
     return state.news.selectedPublisher;
   });
 
   const { data } = useGetTopNewsQuery("us");
-  const { data: articleFromPublisher, error } =
+  const { data: articleFromPublisher } =
     useGetArticleFromPublisherQuery(selectedPublisher);
-  console.log(error, " error");
-  console.log(data, " articleFromPublisherr");
 
   const newsArticle: Article[] = selectedPublisher
     ? articleFromPublisher?.articles

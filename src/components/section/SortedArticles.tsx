@@ -1,8 +1,18 @@
+import { useGetArticleFromPublisherQuery } from "../../features/apiSlice";
 import { useAppSelector } from "../../hooks/storeHooks";
+import { Article } from "../../interfaces/interface";
 import NewsCategories from "../ui/NewsCategories";
 
 const SortedArticles = () => {
-  const { newsArticle } = useAppSelector((state) => state.news);
+  const selectedPublisher = useAppSelector((state) => {
+    return state.news.selectedPublisher;
+  });
+  const { data: articleFromPublisher } =
+    useGetArticleFromPublisherQuery(selectedPublisher);
+
+  const newsArticle: Article[] = selectedPublisher
+    ? articleFromPublisher?.articles
+    : null;
 
   return (
     <div className="space-y-12 ">
