@@ -2,7 +2,7 @@ import { useRef, RefObject } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { useGetSourcesQuery } from "../../features/apiSlice";
 import { Publisher } from "../../interfaces/interface";
-import { choosePublisher } from "../../features/news";
+import { setSelectedSource } from "../../features/news";
 import { useAppDispatch } from "../../hooks/storeHooks";
 
 const PublisherList = () => {
@@ -20,7 +20,7 @@ const PublisherList = () => {
   };
 
   const handleSelectedPublisher = async (publisher: string | null) => {
-    dispatch(choosePublisher(publisher));
+    dispatch(setSelectedSource(publisher));
   };
 
   return (

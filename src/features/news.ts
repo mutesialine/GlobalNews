@@ -2,7 +2,7 @@ import { Article, Publisher } from "./../interfaces/interface";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface state {
-  selectedPublisher: string | null;
+  selectedSource: string | null;
   searchArticles: Article[];
   loading: boolean;
   localLoading: boolean;
@@ -10,7 +10,7 @@ interface state {
 }
 
 const initialState: state = {
-  selectedPublisher: null,
+  selectedSource: null,
   searchArticles: [],
   inputValue: "",
   loading: true,
@@ -20,9 +20,9 @@ export const newSlice = createSlice({
   name: "news",
   initialState: initialState,
   reducers: {
-    choosePublisher: (state, action: PayloadAction<string | null>) => {
+    setSelectedSource: (state, action: PayloadAction<string | null>) => {
       // state.inputValue = null;
-      state.selectedPublisher = action.payload;
+      state.selectedSource = action.payload;
     },
 
     searchCategory: (state, action: PayloadAction<Article[]>) => {
@@ -42,7 +42,7 @@ export const newSlice = createSlice({
 });
 
 export const {
-  choosePublisher,
+  setSelectedSource,
   searchCategory,
   setInputValue,
   loadingData,

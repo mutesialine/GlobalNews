@@ -1,5 +1,5 @@
 import { useGetSourcesQuery } from "../../features/apiSlice";
-import { choosePublisher } from "../../features/news";
+import { setSelectedSource } from "../../features/news";
 import { useAppDispatch } from "../../hooks/storeHooks";
 import { Publisher } from "../../interfaces/interface";
 
@@ -8,8 +8,9 @@ const Categories = () => {
   const { data } = useGetSourcesQuery(null);
 
   const newsCategory: Publisher[] = data?.sources;
-  const handleSelectedCategories = async (category: string | null) => {
-    dispatch(choosePublisher(category));
+  const handleSelectedCategory = async (category: string | null) => {
+    dispatch(setSelectedSource(category));
+    console.log(category, "selected source");
   };
 
   const categories = newsCategory.map((element?) => element?.category);
@@ -20,7 +21,7 @@ const Categories = () => {
         <p
           key={index}
           className="font-bold underline cursor-pointer hover:text-blue-700 shrink-0"
-          onClick={() => handleSelectedCategories(category)}
+          onClick={() => handleSelectedCategory(category)}
         >
           {category}
         </p>

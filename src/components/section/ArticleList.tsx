@@ -4,6 +4,7 @@ import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import {
+  useGetArticleFromCategoryQuery,
   useGetArticleFromPublisherQuery,
   useGetTopNewsQuery,
 } from "../../features/apiSlice";
@@ -12,18 +13,18 @@ import NewsCategories from "../ui/NewsCategories";
 import { useAppSelector } from "../../hooks/storeHooks";
 
 const ArticleList = () => {
-  const selectedPublisher = useAppSelector((state) => {
-    return state.news.selectedPublisher;
+  const selectedSource = useAppSelector((state) => {
+    return state.news.selectedSource;
   });
 
   const { data } = useGetTopNewsQuery("us");
+  const { data: articleFromCategory } =
+    useGetArticleFromCategoryQuery(selectedSource);
   const { data: articleFromPublisher } =
-    useGetArticleFromPublisherQuery(selectedPublisher);
-
-  const newsArticle: Article[] = selectedPublisher
-    ? articleFromPublisher?.articles
+    useGetArticleFromPublisherQuery(selectedSource);
+  const newsArticle: Article[] = selectedSource
+    ? articleFromPublisher?.articles || articleFromCategory?.articles
     : data?.articles;
-
   const swiperRef = useRef<SwiperRef>(null);
 
   return (
@@ -63,38 +64,18 @@ const ArticleList = () => {
             </div>
           </div>
         </div>
-        {/* trending section */}
-        {/* <div>
-          <p className="py-6 text-lg font-bold">Trending</p>
-          <div className="flex flex-col gap-y-2">
-            {newsArticle?.slice(5, 9).map((article, index) => (
-              <div
-                className="flex items-center justify-between text-black cursor-pointer gap-x-4 group hover:opacity-90"
-                key={index}
-              >
-                <div className="w-full">
-                  <img src={article.urlToImage} alt="image" className="" />
-                </div>
-
-                <div className="">
-                  <p className="text-base font-bold gap-x-2 hover:underline">
-                    {article.title}
-                  </p>
-                  <ul className="pt-2 pl-5 space-y-3 text-sm text-white list-disc marker:text-white">
-                    <li>{article.publishedAt}hours ago</li>
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div> */}
       </div>
-      <div className="grid grid-cols-3 gap-4 ">
-        {newsArticle?.slice(5, 11).map((article, index) => (
-          <div key={index}>
-            <NewsCategories {...article} />
-          </div>
-        ))}
+      <div className="space-y-14">
+        <p className="text-2xl font-bold text-red-500 uppercase">
+          {selectedSource}
+        </p>
+        <div className="grid grid-cols-3 gap-4 ">
+          {newsArticle?.slice(5, 11).map((article, index) => (
+            <div key={index}>
+              <NewsCategories {...article} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
